@@ -62,7 +62,7 @@ def runge_kuta(h, f, Ys, x):
 
 resultado1 = runge_kuta(0.002, presa_predador, [1000, 300], 0)
 
-resultado2 = runge_kuta(0.002, presa_predador, [1000, 300], 0, 1000)
+resultado2 = runge_kuta(0.002, massa_mola_amortecedor, [1, 1, 0, 0], 0, 1000)
 
 fig = plt.gcf()
 fig.set_size_inches([9,6])
