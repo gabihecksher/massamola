@@ -1,3 +1,5 @@
+from matplotlib import pyplot as plt
+
 def presa_predador(t, Ys):
     a = 100
     b = 0.37
@@ -6,6 +8,14 @@ def presa_predador(t, Ys):
     y1 = a * Ys[0] - b * Ys[0] * Ys[1]
     y2 = -1 * c * Ys[1] + d * Ys[0] * Ys[1]
     return [y1, y2]
+
+def massa_mola_amortecedor(t, Ys):
+    f1, f2, c1, c2, c3, k1, k2, k3, m1, m2 = 0, 0, 0.5, 0.5, 0.5, 1, 1, 1, 1, 1
+    y1 = Ys[2]
+    y2 = Ys[3]
+    y3 = (f1 - (c1 + c2) * Ys[2] - (k1 + k2) * Ys[0] + k2 * Ys[1] + c2 * Ys[3]) / m1
+    y4 = (f2 - (c2 + c3) * Ys[3] - (k2 + k3) * Ys[1] + c2 * Ys[2] + k2 * Ys[0]) / m2
+    return [y3, y4, y1, y2]
 
 def soma(a, b):
     d, c, e = [], [], []
@@ -25,6 +35,14 @@ def multiplica(num, vet):
         temp[i] = vet[i] * num
     return temp
 
+def correcao(f, Y, Y_, h, x):
+    a = f(x, Y)
+    b = f(x+h, Y_)
+    c = soma(a, b)
+    d = multiplica(h/2, c)
+    e = soma(Y, d)
+    return e
+
 def runge_kuta(h, f, Ys, x):
     Ys1 = []
     count = 0
@@ -40,4 +58,16 @@ def runge_kuta(h, f, Ys, x):
     return Ys1
 
 
-runge_kuta(0.002, presa_predador, [1000, 300], 0)
+
+
+resultado1 = runge_kuta(0.002, presa_predador, [1000, 300], 0)
+
+resultado2 = runge_kuta(0.002, presa_predador, [1000, 300], 0, 1000)
+
+fig = plt.gcf()
+fig.set_size_inches([9,6])
+plt.plot(resultado1[1], resultado1[0])
+
+fig = plt.gcf()
+fig.set_size_inches([9,6])
+plt.plot(resultado2[1], resultado2[0])
