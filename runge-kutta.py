@@ -10,7 +10,7 @@ def presa_predador(t, Ys):
     return [y1, y2]
 
 def massa_mola_amortecedor(t, Ys):
-    f1, f2, c1, c2, c3, k1, k2, k3, m1, m2 = 0, 0, 0.5, 0.5, 0.5, 1, 1, 1, 1, 1
+    f1, f2, c1, c2, c3, k1, k2, k3, m1, m2 = 0, 0, 1, 1, 1, 1, 1, 1, 1, 1
     y1 = Ys[2]
     y2 = Ys[3]
     y3 = (f1 - (c1 + c2) * Ys[2] - (k1 + k2) * Ys[0] + k2 * Ys[1] + c2 * Ys[3]) / m1
@@ -62,14 +62,14 @@ def runge_kuta(h, f, Ys, x, passos):
     return Ys1, Xs
 
 
-resultado1 = runge_kuta(0.002, presa_predador, [1000, 300], 0, 1000)
+# resultado1 = runge_kuta(0.002, presa_predador, [1000, 300], 0, 1000)
 
-resultado2 = runge_kuta(0.002, massa_mola_amortecedor, [1, 1, 0, 0], 0, 1000)
+resultado2 = runge_kuta(0.002, massa_mola_amortecedor, [1, 0, 0, 0], 0, 1000)
 
-fig = plt.gcf()
-fig.set_size_inches([9,6])
-plt.plot(resultado1[1], resultado1[0])
-plt.savefig("grafico_presa_predador")
+# fig = plt.gcf()
+# fig.set_size_inches([9,6])
+# plt.plot(resultado1[1], resultado1[0])
+# plt.savefig("grafico_presa_predador")
 
 fig = plt.gcf()
 fig.set_size_inches([9,6])
