@@ -12,7 +12,7 @@ def presa_predador(t, Ys):
 def massa_mola_amortecedor(t, Ys):
     f1, f2, c1, c2, c3, k1, k2, k3, m1, m2 = 0, 0, 1, 1, 1, 1, 1, 1, 1, 1
     y1 = Ys[2]
-    y2 = Ys[3]
+    y2 = Ys[3]xd
     y3 = (f1 - (c1 + c2) * Ys[2] - (k1 + k2) * Ys[0] + k2 * Ys[1] + c2 * Ys[3]) / m1
     y4 = (f2 - (c2 + c3) * Ys[3] - (k2 + k3) * Ys[1] + c2 * Ys[2] + k2 * Ys[0]) / m2
     return [y3, y4, y1, y2]
