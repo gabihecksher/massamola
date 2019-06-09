@@ -43,24 +43,26 @@ def correcao(f, Y, Y_, h, x):
     e = soma(Y, d)
     return e
 
-def runge_kuta(h, f, Ys, x):
+def runge_kuta(h, f, Ys, x, passos):
     Ys1 = []
+    Xs = []
     count = 0
-    while(x != 0.036):
+    while(count <= passos):
         a = multiplica((h/2),f(x, Ys))
         b = soma(Ys, a)
         c = multiplica(h, f(x + h/2, b))
         d = soma(Ys, c)
+        d = correcao(f, Ys, d, h, x)
+        d = correcao(f, Ys, d, h, x)
         Ys1.append(d)
         Ys = Ys1[count]
         x += h
+        Xs.append(x)
         count += 1
-    return Ys1
+    return Ys1, Xs
 
 
-
-
-resultado1 = runge_kuta(0.002, presa_predador, [1000, 300], 0)
+resultado1 = runge_kuta(0.002, presa_predador, [1000, 300], 0, 1000)
 
 resultado2 = runge_kuta(0.002, massa_mola_amortecedor, [1, 1, 0, 0], 0, 1000)
 
