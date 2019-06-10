@@ -10,30 +10,19 @@ def presa_predador(t, Ys):
     return [y1, y2]
 
 def massa_mola_amortecedor(t, Ys):
+    #f1, f2, c1, c2, c3, k1, k2, k3, m1, m2 = 10, 1, 0.5, 0.5, 0.5, 1, 1, 1, 1, 1
     f1, f2, c1, c2, c3, k1, k2, k3, m1, m2 = 0, 0, 1, 1, 1, 1, 1, 1, 1, 1
     y1 = Ys[2]
     y2 = Ys[3]xd
     y3 = (f1 - (c1 + c2) * Ys[2] - (k1 + k2) * Ys[0] + k2 * Ys[1] + c2 * Ys[3]) / m1
     y4 = (f2 - (c2 + c3) * Ys[3] - (k2 + k3) * Ys[1] + c2 * Ys[2] + k2 * Ys[0]) / m2
-    return [y3, y4, y1, y2]
+    return [y1, y2, y3, y4]
 
 def soma(a, b):
-    d, c, e = [], [], []
-    if len(a) > len(b):
-        c, e = b, a
-    elif len(a) < len(b):
-        c, e = a, b
-    else:
-        c, e = a, b
-    for i in range(len(c)):
-        d.append(c[i] + e[i])
-    return d
+    return [x + y for x, y in zip(a, b)]
 
 def multiplica(num, vet):
-    temp = vet
-    for i in range(len(vet)):
-        temp[i] = vet[i] * num
-    return temp
+    return [x * num for x in vet]
 
 def correcao(f, Y, Y_, h, x):
     a = f(x, Y)
@@ -64,7 +53,7 @@ def runge_kuta(h, f, Ys, x, passos):
 
 # resultado1 = runge_kuta(0.002, presa_predador, [1000, 300], 0, 1000)
 
-resultado2 = runge_kuta(0.002, massa_mola_amortecedor, [1, 0, 0, 0], 0, 1000)
+resultado2 = runge_kuta(0.02, massa_mola_amortecedor, [1, 0, 0, 0], 0, 1000)
 
 # fig = plt.gcf()
 # fig.set_size_inches([9,6])
