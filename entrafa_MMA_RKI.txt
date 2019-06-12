@@ -1,0 +1,19 @@
+constantes do problema f = forca, c = contante do amortecedor, k = constante da mola, m = massa
+f1 = 0
+c1 = 0.5
+k1 = 1
+m1 = 1
+f2 = 0
+c2 = 0.5
+k2 = 1
+m2 = 1
+c3 = 0.5
+k3 = 1
+
+y's do problema w = deslocamento, v = velocidade
+w1 = 20
+v1 = 1
+w2 = 30
+v2 = 1
+
+Esse arquivo funciona apenas para o problema testado o Massa-Mola-Amortecedor de dois graus de liberdade e 2 paredes
